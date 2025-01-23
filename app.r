@@ -3,6 +3,7 @@ library(ffscrapr)
 library(dplyr)
 library(gsubfn)
 library(tidyr)
+library(DT)
 
 # Source the trade-scraper functions
 source("trade-scraper.r")
@@ -18,7 +19,7 @@ ui <- fluidPage(
       actionButton("get_trades", "Get Trades")  # Button to trigger trade fetching
     ),
     mainPanel(
-      tableOutput("trades_table")  # Output table to display trades
+      DTOutput("trades_table")  # Output table to display trades using DT
     )
   )
 )
@@ -47,8 +48,8 @@ server <- function(input, output) {
     return(trades)
   })
 
-  # Render the trades table
-  output$trades_table <- renderTable({
+  # Render the trades table using DT
+  output$trades_table <- renderDT({
     trades <- trades_data()
     cat("Rendering trades table:\n")
     print(trades)
@@ -65,7 +66,8 @@ server <- function(input, output) {
       cat("Unnesting list columns in trades\n")
       trades <- trades %>% unnest(cols = c(assets, trade_partner), keep_empty = TRUE)
     }
-    trades
+    
+    datatable(trades, options = list(scrollX = TRUE, pageLength = 10))
   })
 }
 
