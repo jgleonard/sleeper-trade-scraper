@@ -1,9 +1,18 @@
-library(shiny)
-library(ffscrapr)
-library(dplyr)
-library(gsubfn)
-library(tidyr)
-library(DT)
+# Function to install and load required packages
+install_and_load <- function(packages) {
+  for (package in packages) {
+    if (!require(package, character.only = TRUE)) {
+      install.packages(package, dependencies = TRUE)
+      library(package, character.only = TRUE)
+    }
+  }
+}
+
+# List of required packages
+required_packages <- c("shiny", "ffscrapr", "dplyr", "gsubfn", "tidyr", "DT")
+
+# Install and load required packages
+install_and_load(required_packages)
 
 # Source the trade-scraper functions
 source("trade-scraper.r")
