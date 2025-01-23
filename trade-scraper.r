@@ -1,10 +1,18 @@
-# Install the ffscrapr package if you haven't already
-# install.packages("ffscrapr","dplyr","tidyr","gsubfn") # nolint
+# Function to install and load required packages
+install_and_load <- function(packages) {
+  for (package in packages) {
+    if (!require(package, character.only = TRUE)) {
+      install.packages(package, dependencies = TRUE)
+      library(package, character.only = TRUE)
+    }
+  }
+}
 
-# Load ffscrapr and dplyr packages
-library(ffscrapr)
-library(dplyr)
-library(gsubfn)
+# List of required packages
+required_packages <- c("ffscrapr", "dplyr", "tidyr", "gsubfn")
+
+# Install and load required packages
+install_and_load(required_packages)
 
 # Function to get trades for a given Sleeper user and year
 get_sleeper_trades <- function(user_id, year) {
