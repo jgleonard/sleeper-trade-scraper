@@ -169,15 +169,3 @@ get_sleeper_player_trades <- function(user_id, year, player_name) {
 
   return(p_trades)
 }
-# Fensass
-# bbags
-# asdfjkl
-# FartyMcBoogerballs
-# Hart603
-# jbake
-# bblakemore508
-# jeffacarp86
-# rinougunicorn
-# midwestballer
-# aruck75
-# thegabaghoul
