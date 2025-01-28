@@ -169,3 +169,11 @@ get_sleeper_player_trades <- function(user_id, year, player_name) {
 
   return(p_trades)
 }
+
+# Function to filter a trade dataframe for specific trade_partner
+filter_trade_partner <- function(trades, trade_partner) {
+  # Filter the trades to only include trades with the specified trade partner
+  filtered_trades <- trades[trades$trade_partner == trade_partner, ]
+
+  return(filtered_trades)
+}
